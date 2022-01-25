@@ -6,14 +6,15 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
-public class BookingViewImpl {
+public class BookingViewImpl implements BookingView {
 
-	private BookingImpl bookingimpl; // macht Impl -unsichtbar ???
+	private Booking bookingimpl; // macht Impl -unsichtbar ???
 
-	public BookingViewImpl(BookingImpl bookingimpl) {
+	public BookingViewImpl(Booking bookingimpl) {
 		this.bookingimpl = bookingimpl;
 	}
 
+	@Override
 	public void menu() {
 		String input = "";
 		Scanner scannerOneTrans = new Scanner(System.in);
@@ -40,6 +41,7 @@ public class BookingViewImpl {
 		}
 	}
 
+	@Override
 	public void show() {
 		System.out.println("Empfänger: " + bookingimpl.getEmpfaenger());
 		System.out.println("IBAN: " + bookingimpl.getIban());
@@ -52,6 +54,7 @@ public class BookingViewImpl {
 		System.out.println("Datum: " + formattedDateTime);
 	}
 
+	@Override
 	public void newBooking() {
 		Scanner transferscanner = new Scanner(System.in);
 		System.out.println("Bitte geben Sie den Empfänger ein: ");
@@ -69,7 +72,7 @@ public class BookingViewImpl {
 		System.out.println("Bitte geben Sie den Betrag ein: ");
 		float einBetrag = Float.parseFloat(transferscanner.nextLine());
 
-		BookingImpl buchung = new BookingImpl(einBetrag, einEmpfaenger, einIBAN, einBic, einVerwendungszweck,
+		Booking buchung = new BookingImpl(einBetrag, einEmpfaenger, einIBAN, einBic, einVerwendungszweck,
 				LocalDateTime.now());
 
 	}

@@ -10,11 +10,11 @@ public class Starter {
 
 	public static void main(String[] args) {
 
-		// Application application = new ApplicationImpl();
-		// application.run(args);
+		Application application = new ApplicationImpl();
+		application.run(args);
 		LocalDateTime datum = LocalDateTime.now();
-		BookingViewImpl bookingviewimpl = new BookingViewImpl(buchung);
-		bookingviewimpl.menu();
+		//BookingViewImpl bookingviewimpl = new BookingViewImpl(buchung);
+		//bookingviewimpl.menu();
 	}
 
 }

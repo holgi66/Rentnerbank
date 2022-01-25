@@ -4,8 +4,11 @@ import java.time.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import de.telekom.sea7.Booking;
+import de.telekom.sea7.Bookings;
 
-public class BookingsImpl implements Iterable {
+
+public class BookingsImpl implements Iterable, Bookings {
 
 		private ArrayList bookings;
 		
@@ -13,8 +16,9 @@ public class BookingsImpl implements Iterable {
 			bookings = new ArrayList();
 		}
 		
+		@Override
 		public void add(float betrag, String empfaenger, String iban, String bic, String verwendungszweck, LocalDateTime datum) {
-			BookingImpl bookingimpl = new BookingImpl(betrag, empfaenger, iban, bic, verwendungszweck, datum);
+			Booking bookingimpl = new BookingImpl(betrag, empfaenger, iban, bic, verwendungszweck, datum);
 			bookings.add(bookingimpl);
 		}
 		
@@ -24,12 +28,14 @@ public class BookingsImpl implements Iterable {
 			// TODO Auto-generated method stub
 			return bookings.iterator();
 		}
-		public int getIndex(BookingImpl horst) {
+		@Override
+		public int getIndex(Booking horst) {
 		return this.bookings.indexOf(horst);	
 			
 		}
-		public BookingImpl getBooking (int index ) {
-			return (BookingImpl) bookings.get(index);
+		@Override
+		public Booking getBooking (int index ) {
+			return (Booking) bookings.get(index);
 		}
 }
 

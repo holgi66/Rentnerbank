@@ -1,26 +1,30 @@
 package de.telekom.sea7.View;
 
 import java.time.LocalDateTime;
+import java.lang.Iterable;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import de.telekom.sea7.Model.BookingImpl;
-import de.telekom.sea7.Model.BookingsImpl;
+import de.telekom.sea7.Booking;
+import de.telekom.sea7.BookingView;
+import de.telekom.sea7.Bookings;
+import de.telekom.sea7.BookingsView;
 
-public class BookingsViewImpl {
+public class BookingsViewImpl implements BookingsView {
 
-	private BookingsImpl bookingsimpl;
+	private Bookings bookingsimpl;
 
-	public BookingsViewImpl(BookingsImpl bookingsimpl) {
+	public BookingsViewImpl(Bookings bookingsimpl) {
 		this.bookingsimpl = bookingsimpl;
 	}
 
+	@Override
 	public void menu() {
 		String input = "";
 		Scanner scanner = new Scanner(System.in);
 		while (!input.equals("exit")) {
 			System.out
-					.println("Enter something (e.g add - create new transaction, showAll - lists all transactions): ");
+					.println("Enter something (e.g add - create new transaction,showAll - lists all transactions, showOne - List one transaction): ");
 			input = scanner.next();
 
 			switch (input) {
@@ -82,20 +86,21 @@ public class BookingsViewImpl {
 	private void showAll() {
 
 		for (Object o : bookingsimpl) {
-			BookingImpl tempTrans = (BookingImpl) o;
+			Booking tempTrans = (Booking) o;
 			System.out.println(bookingsimpl.getIndex(tempTrans) + "-" + tempTrans.getEmpfaenger() + " - "
 					+ tempTrans.getVerwendungszweck() + " - " + String.format("%.2f", tempTrans.getBetrag()) + "€");
 		}
 	
 	}
+	
 private void showOne() {
 	 Scanner scannershowOne = new Scanner(System.in);
 	 System.out.println("Wähle den gewünschten Datensatz aus: "); 
 	 int index = scannershowOne.nextInt(); 
 	 scannershowOne.nextLine();
-	BookingImpl temp = bookingsimpl.getBooking(index);
+	Booking temp = bookingsimpl.getBooking(index);
 	
-	BookingViewImpl bookingviewimpl = new BookingViewImpl(temp);
+	BookingView bookingviewimpl = new BookingViewImpl(temp);
 	bookingviewimpl.show();
 	
 	
