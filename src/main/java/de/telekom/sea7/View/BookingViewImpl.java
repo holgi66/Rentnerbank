@@ -26,7 +26,7 @@ public class BookingViewImpl implements BookingView {
 			case "Newbooking":
 				newBooking();
 				break;
-
+				
 			case "show":
 				show();
 				break;
